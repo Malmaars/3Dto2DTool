@@ -27,7 +27,7 @@ public class ImageSize : MonoBehaviour
 
         if (newXSize != 0 && newYSize != 0 && (newXSize != BlackBoard.visualRT.width || newYSize != BlackBoard.visualRT.height))
         {
-            BlackBoard.visualRT = new RenderTexture(newXSize, newYSize, 16, RenderTextureFormat.ARGB32);
+            BlackBoard.SetRenderTexture(new RenderTexture(newXSize, newYSize, 16, RenderTextureFormat.ARGB32));
         }
     }
 }
