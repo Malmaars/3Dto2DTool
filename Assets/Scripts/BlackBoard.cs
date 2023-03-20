@@ -13,9 +13,21 @@ public static class BlackBoard
 
     public static Camera photoCamera;
 
-    public static void SetRenderedObject()
+    public static void ApplyTexture(Texture2D _tex)
     {
+        MeshRenderer[] meshes =  renderedObject.GetComponentsInChildren<MeshRenderer>();
 
+        Debug.Log(meshes.Length);
+        foreach(MeshRenderer mesh in meshes)
+        {
+            //apply the texture
+            mesh.material.SetTexture("_MainTex", _tex);
+        }
+    }
+    public static void SetRenderedObject(GameObject _newObject)
+    {
+        Object.Destroy(renderedObject);
+        renderedObject = _newObject;
     }
 
     public static void SetRenderImage(RawImage _newRI)
