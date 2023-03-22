@@ -14,6 +14,7 @@ public class RenderManager : MonoBehaviour
     public Transform renderVisualParent;
 
     public Camera photoCam;
+    public Camera UICam;
 
     private void Start()
     {
@@ -47,7 +48,6 @@ public class RenderManager : MonoBehaviour
         }
 
         renderVisualParent.localScale = new Vector3(newScale, newScale, newScale);
-
     }
 
     public void AlignBorder()
@@ -206,6 +206,10 @@ public class RenderManager : MonoBehaviour
     IEnumerator ExportImageToFile()
     {
         yield return new WaitForEndOfFrame();
+
+        //turn off specific camera culling mask
+        int oldMask = BlackBoard.photoCamera.cullingMask;
+        //BlackBoard.photoCamera.cullingMask
 
         RenderTexture.active = BlackBoard.visualRT;
         Texture2D screenShot = new Texture2D(BlackBoard.visualRT.width, BlackBoard.visualRT.height, TextureFormat.ARGB32, false);

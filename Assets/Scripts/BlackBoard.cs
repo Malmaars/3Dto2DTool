@@ -13,6 +13,8 @@ public static class BlackBoard
 
     public static Camera photoCamera;
 
+    public static bool movingObject;
+
     public static void ApplyTexture(Texture2D _tex)
     {
         MeshRenderer[] meshes =  renderedObject.GetComponentsInChildren<MeshRenderer>();
@@ -28,6 +30,17 @@ public static class BlackBoard
     {
         Object.Destroy(renderedObject);
         renderedObject = _newObject;
+    }
+
+    public static void SetRenderObjectPosition(Vector3 _pos)
+    {
+        renderedObject.transform.position = _pos;
+    }
+
+    public static void MoveObject(Vector3 _toMove)
+    {
+        Debug.Log(_toMove);
+        renderedObject.transform.position += _toMove;
     }
 
     public static void SetRenderImage(RawImage _newRI)

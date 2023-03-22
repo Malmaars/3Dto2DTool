@@ -6,6 +6,8 @@ using TMPro;
 
 public class ObjectProperties : MonoBehaviour
 {
+    public bool movingInScene;
+
     [Header("Object Position")]
     public TMP_InputField PositionX;
     public TMP_InputField PositionY; 
@@ -34,6 +36,12 @@ public class ObjectProperties : MonoBehaviour
         InitializeVariable(ScaleX, "1");
         InitializeVariable(ScaleY, "1");
         InitializeVariable(ScaleZ, "1");
+    }
+
+    private void Update()
+    {
+        if (!BlackBoard.movingObject)
+            UpdateVisuals();
     }
 
     void InitializeVariable(TMP_InputField field, string input)
@@ -67,5 +75,25 @@ public class ObjectProperties : MonoBehaviour
         Vector3 scl = new Vector3(float.Parse(ScaleX.text), float.Parse(ScaleY.text), float.Parse(ScaleZ.text));
         BlackBoard.renderedObject.transform.localScale = scl;
 
+    }
+
+    public void UpdateVisuals()
+    {
+        if(BlackBoard.renderedObject == null)
+        {
+            return;
+        }
+
+        PositionX.text = BlackBoard.renderedObject.transform.position.x.ToString();
+        PositionY.text = BlackBoard.renderedObject.transform.position.y.ToString();
+        PositionZ.text = BlackBoard.renderedObject.transform.position.z.ToString();
+
+        RotationX.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.x.ToString();
+        RotationY.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.y.ToString();
+        RotationZ.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.z.ToString();
+
+        ScaleX.text = BlackBoard.renderedObject.transform.localScale.x.ToString();
+        ScaleY.text = BlackBoard.renderedObject.transform.localScale.y.ToString();
+        ScaleZ.text = BlackBoard.renderedObject.transform.localScale.z.ToString();
     }
 }
