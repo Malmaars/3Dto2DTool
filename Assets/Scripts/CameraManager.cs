@@ -7,6 +7,8 @@ public class CameraManager : MonoBehaviour
     public Vector3 Pivot;
     public Camera basePhotoCamera;
 
+    List<Camera> photoCameras;
+
     Vector2 mousePos;
 
     public float mouseSensitivity;
@@ -16,6 +18,8 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         mousePos = Input.mousePosition;
+
+        photoCameras = new List<Camera>();
     }
 
     // Update is called once per frame
@@ -53,8 +57,8 @@ public class CameraManager : MonoBehaviour
 
         Vector3 rotateDirection = ((transform.up * mouseDir.y).normalized + (transform.right * mouseDir.x).normalized).normalized;
 
-        transform.RotateAround(BlackBoard.renderedObject.transform.position, transform.up, Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime);
-        transform.RotateAround(BlackBoard.renderedObject.transform.position, transform.right, -Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime);
+        transform.RotateAround(Pivot, transform.up, Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime);
+        transform.RotateAround(Pivot, transform.right, -Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime);
     }
 
     void MoveCamera()
@@ -66,5 +70,23 @@ public class CameraManager : MonoBehaviour
     void MoveCloser()
     {
         transform.position = Pivot + (transform.position - Pivot).normalized * (Vector3.Distance(transform.position, Pivot) - Input.mouseScrollDelta.y * scrollSpeed * Time.deltaTime);
+    }
+
+    public void Focus()
+    {
+        SetPivot(BlackBoard.renderedObject.transform.position);
+        transform.LookAt(BlackBoard.renderedObject.transform.position);
+    }
+
+    public void AddCamera()
+    {
+        //when the player adds a camera, it will be added from the perspective they're in right then
+        GameObject temp = new GameObject();
+
+        Camera newCam = temp.AddComponent<Camera>();
+
+        newCam.CopyFrom(basePhotoCamera);
+
+        photoCameras.Add(newCam);
     }
 }
