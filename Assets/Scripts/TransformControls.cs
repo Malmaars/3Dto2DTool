@@ -28,6 +28,8 @@ public class TransformControls : MonoBehaviour
         rotationHandle = rotationTransform.GetComponent<RuntimeTransformHandle>();
         scaleHandle = scaleTransform.GetComponent<RuntimeTransformHandle>();
 
+        StartCoroutine(InitializeTransformOptions());
+
         ChangeTransformOption(0);
     }
 
@@ -47,6 +49,33 @@ public class TransformControls : MonoBehaviour
             //rezise the transform controls relative to the camera
             float newScale = Vector3.Distance(BlackBoard.renderedObject.transform.position, Camera.main.transform.position) * transformSize;
             transform.localScale = new Vector3(newScale, newScale, newScale);
+        }
+    }
+
+    IEnumerator InitializeTransformOptions()
+    {
+        positionTransform.SetActive(true);
+        rotationTransform.SetActive(true);
+        scaleTransform.SetActive(true);
+
+        yield return new WaitForEndOfFrame();
+
+        SetLayerOfChildren(positionTransform.transform);
+        SetLayerOfChildren(rotationTransform.transform);
+        SetLayerOfChildren(scaleTransform.transform);
+
+        positionTransform.SetActive(false);
+        rotationTransform.SetActive(false);
+        scaleTransform.SetActive(false);
+
+    }
+
+    void SetLayerOfChildren(Transform _parent)
+    {
+        for(int i = 0; i < _parent.childCount; i++)
+        {
+            _parent.GetChild(i).gameObject.layer = 6;
+            SetLayerOfChildren(_parent.GetChild(i));
         }
     }
 

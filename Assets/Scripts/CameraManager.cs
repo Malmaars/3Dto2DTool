@@ -7,19 +7,21 @@ public class CameraManager : MonoBehaviour
     public Vector3 Pivot;
     public Camera basePhotoCamera;
 
-    List<Camera> photoCameras;
-
     Vector2 mousePos;
 
     public float mouseSensitivity;
     public float moveSensitivity;
     public float scrollSpeed;
+
+    public GameObject cameraUIPrefab;
+    public Transform photoCameraUIParent;
+    int cameraNumber = 1;
+
+    public CameraProperties camProp;
     // Start is called before the first frame update
     void Start()
     {
         mousePos = Input.mousePosition;
-
-        photoCameras = new List<Camera>();
     }
 
     // Update is called once per frame
@@ -34,15 +36,26 @@ public class CameraManager : MonoBehaviour
 
             RotateAroundPivot();
             mousePos = Input.mousePosition;
+
+            camProp.movingInScene = true;
         }
 
-        if (Input.GetMouseButton(2))
+        else if (Input.GetMouseButton(2))
         {
             MoveCamera();
+            camProp.movingInScene = true;
         }
 
-        if (Input.mouseScrollDelta.y != 0)
+        else if (Input.mouseScrollDelta.y != 0)
+        {
             MoveCloser();
+            camProp.movingInScene = true;
+        }
+
+        else
+        {
+            camProp.movingInScene = false;
+        }
     }
 
     void SetPivot(Vector3 _newPivot)
@@ -63,6 +76,7 @@ public class CameraManager : MonoBehaviour
 
     void MoveCamera()
     {
+        Debug.Log("Move camera");
         transform.position -= transform.up * Time.deltaTime * Input.GetAxis("Mouse Y") * moveSensitivity;
         transform.position -= transform.right * Time.deltaTime * Input.GetAxis("Mouse X") * moveSensitivity;
     }
@@ -85,8 +99,15 @@ public class CameraManager : MonoBehaviour
 
         Camera newCam = temp.AddComponent<Camera>();
 
-        newCam.CopyFrom(basePhotoCamera);
+        RenderTexture rt = new RenderTexture(BlackBoard.visualRT);
 
-        photoCameras.Add(newCam);
+        newCam.CopyFrom(basePhotoCamera);
+        newCam.targetTexture = rt;
+
+        GameObject UITemp = Instantiate(cameraUIPrefab, photoCameraUIParent);
+        UITemp.transform.SetSiblingIndex(UITemp.transform.parent.childCount - 2);
+
+
+        UITemp.GetComponent<PhotoCamera>().Initialize(newCam, rt);
     }
 }

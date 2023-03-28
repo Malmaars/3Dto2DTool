@@ -18,18 +18,18 @@ public class FileDataHandler
         this.useEncryption = useEncryption;
     }
 
-    public GameData Load()
+    public GameData Load(string path)
     {
         // use Path.Combine to account for different OS's having different path separators
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        //string fullPath = Path.Combine(dataDirPath, dataFileName);
         GameData loadedData = null;
-        if (File.Exists(fullPath))
+        if (File.Exists(path))
         {
             try
             {
                 // load the serialized data from the file
                 string dataToLoad = "";
-                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                using (FileStream stream = new FileStream(path, FileMode.Open))
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {
@@ -48,20 +48,18 @@ public class FileDataHandler
             }
             catch (Exception e)
             {
-                Debug.LogError("Error occured when trying to load data from file: " + fullPath + "\n" + e);
+                Debug.LogError("Error occured when trying to load data from file: " + path + "\n" + e);
             }
         }
         return loadedData;
     }
 
-    public void Save(GameData data)
+    public void Save(GameData data, string path)
     {
-        // use Path.Combine to account for different OS's having different path separators
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
         try
         {
             // create the directory the file will be written to if it doesn't already exist
-            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
 
             // serialize the C# game data object into Json
             string dataToStore = JsonUtility.ToJson(data, true);
@@ -73,7 +71,7 @@ public class FileDataHandler
             }
 
             // write the serialized data to the file
-            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            using (FileStream stream = new FileStream(path, FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
@@ -81,11 +79,11 @@ public class FileDataHandler
                 }
             }
 
-            Debug.Log("Succeeded, file can be found at: " + fullPath);
+            Debug.Log("Succeeded, file can be found at: " + path);
         }
         catch (Exception e)
         {
-            Debug.LogError("Error occured when trying to save data to file: " + fullPath + "\n" + e);
+            Debug.LogError("Error occured when trying to save data to file: " + path + "\n" + e);
         }
     }
 

@@ -13,6 +13,10 @@ public static class BlackBoard
 
     public static Camera photoCamera;
 
+    public static AnimationClip animClip;
+    public static Animation anim;
+    public static string animObjectName;
+
     public static bool movingObject;
 
     public static void ApplyTexture(Texture2D _tex)
@@ -30,6 +34,11 @@ public static class BlackBoard
     {
         Object.Destroy(renderedObject);
         renderedObject = _newObject;
+    }
+
+    public static void SetAnimationClip(AnimationClip _clip)
+    {
+        animClip = _clip;
     }
 
     public static void SetRenderObjectPosition(Vector3 _pos)

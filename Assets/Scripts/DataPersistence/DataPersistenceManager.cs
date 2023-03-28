@@ -36,10 +36,10 @@ public class DataPersistenceManager : MonoBehaviour
         this.gameData = new GameData();
     }
 
-    public void LoadGame()
+    public void LoadGame(string path)
     {
         // load any saved data from a file using the data handler
-        this.gameData = dataHandler.Load();
+        this.gameData = dataHandler.Load(path);
 
         // if no data can be loaded, initialize to a new game
         if (this.gameData == null)
@@ -55,7 +55,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
     }
 
-    public void SaveGame()
+    public void SaveGame(string path)
     {
         // pass the data to other scripts so they can update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
@@ -64,7 +64,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         // save that data to a file using the data handler
-        dataHandler.Save(gameData);
+        dataHandler.Save(gameData, path);
     }
 
     private void OnApplicationQuit()

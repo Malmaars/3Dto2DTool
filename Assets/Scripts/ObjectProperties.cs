@@ -84,16 +84,16 @@ public class ObjectProperties : MonoBehaviour
             return;
         }
 
-        PositionX.text = BlackBoard.renderedObject.transform.position.x.ToString();
-        PositionY.text = BlackBoard.renderedObject.transform.position.y.ToString();
-        PositionZ.text = BlackBoard.renderedObject.transform.position.z.ToString();
+        PositionX.text = BlackBoard.renderedObject.transform.position.x.ToString("F2");
+        PositionY.text = BlackBoard.renderedObject.transform.position.y.ToString("F2");
+        PositionZ.text = BlackBoard.renderedObject.transform.position.z.ToString("F2");
 
-        RotationX.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.x.ToString();
-        RotationY.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.y.ToString();
-        RotationZ.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.z.ToString();
+        RotationX.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.x.ToString("F2");
+        RotationY.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.y.ToString("F2");
+        RotationZ.text = BlackBoard.renderedObject.transform.rotation.eulerAngles.z.ToString("F2");
 
-        ScaleX.text = BlackBoard.renderedObject.transform.localScale.x.ToString();
-        ScaleY.text = BlackBoard.renderedObject.transform.localScale.y.ToString();
-        ScaleZ.text = BlackBoard.renderedObject.transform.localScale.z.ToString();
+        ScaleX.text = BlackBoard.renderedObject.transform.localScale.x.ToString("F2");
+        ScaleY.text = BlackBoard.renderedObject.transform.localScale.y.ToString("F2");
+        ScaleZ.text = BlackBoard.renderedObject.transform.localScale.z.ToString("F2");
     }
 }
