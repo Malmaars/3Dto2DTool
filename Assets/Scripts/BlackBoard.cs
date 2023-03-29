@@ -6,7 +6,7 @@ using TMPro;
 
 public static class BlackBoard
 {
-    public static GameObject renderedObject;
+    public static GameObject renderedObject { get; private set; }
 
     public static RenderTexture visualRT;
     public static RawImage renderImage;

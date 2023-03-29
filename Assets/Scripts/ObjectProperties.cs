@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ObjectProperties : MonoBehaviour
+public class ObjectProperties : Properties
 {
     public bool movingInScene;
 
@@ -23,7 +23,7 @@ public class ObjectProperties : MonoBehaviour
     public TMP_InputField ScaleY;
     public TMP_InputField ScaleZ;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         InitializeVariable(PositionX, "0");
         InitializeVariable(PositionY, "0");
@@ -49,7 +49,7 @@ public class ObjectProperties : MonoBehaviour
         field.text = input;
     }
 
-    public void UpdateVariables()
+    public override void UpdateVariables()
     {
         if (BlackBoard.renderedObject == null)
             return;
@@ -77,7 +77,7 @@ public class ObjectProperties : MonoBehaviour
 
     }
 
-    public void UpdateVisuals()
+    public override void UpdateVisuals()
     {
         if(BlackBoard.renderedObject == null)
         {

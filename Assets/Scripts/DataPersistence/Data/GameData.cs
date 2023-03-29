@@ -35,11 +35,11 @@ public class GameData
         xResolution = 1024;
         yResolution = 1024;
 
-        objectPath = null;
-        animPath = null;
-        objectPath = null;
+        objectPath = "";
+        animPath = "";
+        objectPath = "";
 
-        AnimationObjectName = null;
+        AnimationObjectName = "";
 
     }
 }

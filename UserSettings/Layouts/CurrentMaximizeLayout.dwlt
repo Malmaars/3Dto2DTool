@@ -224,24 +224,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c6600000d25f0000d25e0000
-      m_LastClickedID: 24774
-      m_ExpandedIDs: 40f2feff36fbffff025d0000d25e000082600000c461000072630000
+      scrollPos: {x: 0, y: 13}
+      m_SelectedIDs: a6e3fefff25a0000fc5f0000
+      m_LastClickedID: 24572
+      m_ExpandedIDs: a6e3fefffe20ffffd4c4ffff34fbffffa05a0000fc5a0000d25e0000d25f0000626000008c600000386200003463000084630000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: ImportButton
-        m_OriginalName: ImportButton
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 24774
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
@@ -535,9 +535,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 147.46645, y: 882.4673, z: -146.35312}
+    m_Target: {x: 972.2694, y: 118.23375, z: 18.971466}
     speed: 2
-    m_Value: {x: 147.46645, y: 882.4673, z: -146.35312}
+    m_Value: {x: 972.2694, y: 118.23375, z: 18.971466}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -584,13 +584,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.013474298, y: 0.061772197, z: -0.0008198965, w: 0.99802244}
+    m_Target: {x: 0.020974446, y: 0.048287496, z: -0.000999879, w: 0.99863595}
     speed: 2
-    m_Value: {x: -0.013474297, y: -0.061772197, z: 0.0008198965, w: -0.99802244}
+    m_Value: {x: -0.020974446, y: -0.0482875, z: 0.000999879, w: -0.99863595}
   m_Size:
-    m_Target: 113.56262
+    m_Target: 185.4326
     speed: 2
-    m_Value: 108.67236
+    m_Value: 185.4326
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 38151
+  controlID: 10254
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -787,22 +787,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Screenshots
+    - Assets/ToolGizmos
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Screenshots
+  - Assets/ToolGizmos
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\simon\Documents\GitHub\3Dto2DTool
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 96650000
-    m_LastClickedID: 26006
-    m_ExpandedIDs: 0000000082650000846500008665000000ca9a3bffffff7f
+    m_SelectedIDs: b4650000
+    m_LastClickedID: 26036
+    m_ExpandedIDs: 0000000094650000966500009865000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -830,7 +830,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000082650000846500008665000000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000094650000966500009865000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -855,8 +855,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: c6600000d25f0000d25e0000
-    m_LastClickedInstanceID: 24274
+    m_SelectedInstanceIDs: a6e3fefff25a0000fc5f0000
+    m_LastClickedInstanceID: -72794
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300007c200000da880000385d0000846a0000c46f0000a66a000036f90000
     m_RenameOverlay:

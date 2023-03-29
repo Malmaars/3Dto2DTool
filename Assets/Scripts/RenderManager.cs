@@ -22,11 +22,17 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     string objectPath, animPath, texturePath;
 
+    int frameRate;
+
+    public GameObject ExportWindow;
+
     private void Start()
     {
         BlackBoard.SetRenderImage(renderVisual);
         BlackBoard.SetPhotoCamera(photoCam);
         BlackBoard.SetRenderTexture(rtTemp);
+
+        frameRate = 24;
     }
 
     private void Update()
@@ -51,6 +57,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
     IEnumerator Load(GameData _gameData)
     {
         yield return new WaitForEndOfFrame();
+
         if (_gameData.objectPath != "")
         {
             objectPath = _gameData.objectPath;
@@ -66,6 +73,8 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             {
                 animPath = _gameData.animPath;
 
+                Debug.Log("Loading animation");
+                Debug.Log(FindObjectOfNameInChildren(BlackBoard.renderedObject.transform, _gameData.AnimationObjectName));
                 //now to find the gameobject in the hierarchy of the renderObject that the animation should be assigned to
                 StartCoroutine(LoadAnim(animPath, FindObjectOfNameInChildren(BlackBoard.renderedObject.transform, _gameData.AnimationObjectName)));
             }
@@ -98,6 +107,16 @@ public class RenderManager : MonoBehaviour, IDataPersistence
         }
 
         return null;
+    }
+
+    public void SetFrameRate(int _newFrameRate)
+    {
+        frameRate = _newFrameRate;
+    }
+
+    public void OpenExportWindow()
+    {
+        ExportWindow.SetActive(true);
     }
 
 
@@ -292,8 +311,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
     IEnumerator FindAnimationInFbx()
     {
         //I'd like to check if there's already an animation in the imported fbx, as that is a possibility
-
-
         yield return new WaitForEndOfFrame();
     }
 
@@ -387,7 +404,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
             //5
             Debug.Log("trying to instantiate");
-            BlackBoard.renderedObject = Instantiate(temp);
+            BlackBoard.SetRenderedObject(Instantiate(temp));
         }
     }
 
@@ -422,11 +439,21 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     public void ExportSpriteSheetVoid()
     {
-        StartCoroutine(ExportSpriteSheetToFile(30));
+        StartCoroutine(ExportSpriteSheetToFile(frameRate));
     }
 
     IEnumerator ExportSpriteSheetToFile(int desiredFramerate)
     {
+        yield return new WaitForEndOfFrame();
+
+        foreach (AnimationState state in BlackBoard.anim)
+        {
+            state.time = 0;
+            state.speed = 0;
+        }
+
+        yield return new WaitForEndOfFrame();
+        BlackBoard.anim.Play();
         yield return new WaitForEndOfFrame();
 
         string path = StandaloneFileBrowser.SaveFilePanel("Save PNG Image", "", "image.png", "png");
@@ -444,16 +471,38 @@ public class RenderManager : MonoBehaviour, IDataPersistence
         string SaveFileName = Path.GetFileNameWithoutExtension(path);
         string fileType = Path.GetExtension(path);
 
+        //for now we'll the spritesheets linear, so it'll be one long strip
+        //to do this, we'll need to calculate the amount of frames beforehand
+        int amountOfFrames = Mathf.FloorToInt(desiredFramerate * animLength);
+        Debug.Log(amountOfFrames);
+
+        int textureSheetXSize = BlackBoard.visualRT.width * amountOfFrames;
+        int textureSheetYSize = BlackBoard.visualRT.height;
+
+        if(textureSheetXSize * textureSheetYSize * 4 > 2130702268)
+        {
+            Debug.LogError("Texture sheet is too big");
+            yield break;
+        }
+
+
+        int currentFrame = 0;
+
+        //*4 because each pixel has 4 values, and will be stored on 4 bytes
+        byte[] sheetBytes = new byte[textureSheetXSize * textureSheetYSize * 4];
+
         while (currentAnimLocation <= animLength)
         {
-
+            Debug.Log(animLength - currentAnimLocation + ", " + currentFrame);
             //so to keep it clear: if the desired framerate is 30, 1 second should be split up in 30 images
             //we can go to a specific place in an animation by passing a value between 0 and 1, so we have to do some calculations
             // 1 / animLength / desiredFrameRate = 1 frame
 
             //then, we can skip to desired points in the animation, depending on the frame rate, and the length of the animation
+            int stateAmount = 0;
             foreach (AnimationState state in BlackBoard.anim)
             {
+                stateAmount++;
                 state.speed = 0;
                 state.time = currentAnimLocation;
                 BlackBoard.anim.Play();
@@ -464,22 +513,49 @@ public class RenderManager : MonoBehaviour, IDataPersistence
                 screenShot.ReadPixels(new Rect(0, 0, BlackBoard.visualRT.width, BlackBoard.visualRT.height), 0, 0);
                 screenShot.Apply();
 
-                byte[] bytes = ImageConversion.EncodeArrayToPNG(screenShot.GetRawTextureData(), screenShot.graphicsFormat, (uint)BlackBoard.visualRT.width, (uint)BlackBoard.visualRT.height);
+                //the byte array is the size of the texture * 4, we need to keep this in mind when transferring the bytes to a texture sheet
+                byte[] addToSheet = screenShot.GetRawTextureData();
 
-                if (path.Length != 0)
-                {
-                    File.WriteAllBytes(Path.Combine(pathFolder, SaveFileName) + frameNumber + fileType, bytes);
+                int textureSheetIndex = currentFrame * BlackBoard.visualRT.width * 4 + 4;
+                int nextLine = 0;
+
+
+                for(int i = 0; i < addToSheet.Length; i++)
+                { 
+                    if(nextLine > (BlackBoard.visualRT.width + 1) * 4)
+                    {
+                        nextLine = 0;
+                        //skip to the next line
+                        textureSheetIndex += BlackBoard.visualRT.width * 4 * (amountOfFrames - 1);
+                    }
+
+                    sheetBytes[textureSheetIndex - 1] = addToSheet[i];
+
+                    textureSheetIndex++;
+                    nextLine++;
                 }
-
             }
-
             //now that we've got all the seperate images of the animation, the trick will be to merge them into a single spritesheet
             //Ideally I want to do this solely through code. The cheeky way would be to render each image in the unity scene, and then take a new screenshot of the images next to each other
 
-            currentAnimLocation += 1 / animLength / desiredFramerate;
+            currentAnimLocation += 1 / (float)desiredFramerate;
+            currentFrame++;
             frameNumber++;
 
             yield return 0;
+        }
+
+        byte[] bytes = ImageConversion.EncodeArrayToPNG(sheetBytes, BlackBoard.visualRT.graphicsFormat, (uint)textureSheetXSize, (uint)textureSheetYSize);
+
+        if (path.Length != 0)
+        {
+            File.WriteAllBytes(Path.Combine(pathFolder, SaveFileName) + fileType, bytes);
+        }
+
+        foreach (AnimationState state in BlackBoard.anim)
+        {
+            state.time = 0;
+            state.speed = 1;
         }
     }
 }

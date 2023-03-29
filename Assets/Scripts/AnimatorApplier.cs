@@ -9,6 +9,8 @@ public class AnimatorApplier : MonoBehaviour
     public GameObject hierarchyElementPrefab;
     GameObject currentAnimationObject;
 
+    public GameObject animCheck, playButton, pauseButton, stopButton;
+
     public Transform contentParent;
     int totalChildCount;
     int maxDepth;
@@ -158,6 +160,16 @@ public class AnimatorApplier : MonoBehaviour
         clip = _newClip;
     }
 
+    public void Cancel()
+    {
+        selectedObjectName = null;
+        currentAnim = null;
+        clip = null;
+        SetVisuals(false);
+        ClearHierarchyVisuals();
+        Close();
+    }
+
     public void Close()
     {
         transform.gameObject.SetActive(false);
@@ -167,6 +179,15 @@ public class AnimatorApplier : MonoBehaviour
     {
         BlackBoard.animObjectName = selectedObjectName;
         BlackBoard.anim = currentAnim;
+        SetVisuals(true);
         Close();
+    }
+
+    void SetVisuals(bool _setTo)
+    {
+        animCheck.SetActive(_setTo);
+        playButton.SetActive(_setTo);
+        pauseButton.SetActive(_setTo);
+        stopButton.SetActive(_setTo);
     }
 }

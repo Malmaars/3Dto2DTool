@@ -15,8 +15,9 @@ public class SaveManager : MonoBehaviour, IDataPersistence
 
     public void LoadGame()
     {
+        DataPersistenceManager.instance.NewGame();
         var extensions = new[] {
-        new ExtensionFilter("Save Files", "save")
+        new ExtensionFilter("save Files", "save")
             };
 
         string path = StandaloneFileBrowser.OpenFilePanel("load a save file", "", extensions, false)[0];
@@ -27,8 +28,6 @@ public class SaveManager : MonoBehaviour, IDataPersistence
     public void NewGame()
     {
         DataPersistenceManager.instance.NewGame();
-
-        //SceneManager.LoadScene(0);
     }
 
     public void SaveData(GameData _gameData)
@@ -40,25 +39,28 @@ public class SaveManager : MonoBehaviour, IDataPersistence
         _gameData.cameraPosition = Camera.main.transform.position;
         _gameData.cameraRotation = Camera.main.transform.rotation;
 
-        _gameData.xResolution = BlackBoard.visualRT.width;
-        _gameData.yResolution = BlackBoard.visualRT.height;
     }
 
     public void LoadData(GameData _gameData)
     {
-        //foreach (SerializableCollectibleInstance col in gameData.myStuff)
-        //{
-        //    CollectibleInstance colTemp = new CollectibleInstance(col);
-        //    colTemp.CreateSceneRef(spawnPos, new Quaternion(0, 0, 0, 0));
-        //    myStuff.Add(colTemp);
-        //}
-        if(BlackBoard.renderedObject == null)
+        StartCoroutine(Load(_gameData));
+    }
+
+    IEnumerator Load(GameData _gameData)
+    {
+        yield return new WaitForEndOfFrame();
+
+        if(_gameData.objectPath != "")
         {
-            rendManager.LoadData(_gameData);
+            while (BlackBoard.renderedObject == null)
+            {
+                yield return null;
+            }
         }
 
         if (BlackBoard.renderedObject != null)
         {
+            Debug.Log("Set position to " + _gameData.objectPosition);
             BlackBoard.SetRenderObjectPosition(_gameData.objectPosition);
             BlackBoard.renderedObject.transform.localScale = _gameData.objectScale;
             BlackBoard.renderedObject.transform.rotation = _gameData.objectRotation;

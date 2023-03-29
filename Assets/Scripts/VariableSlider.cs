@@ -10,6 +10,9 @@ public class VariableSlider : MonoBehaviour, IPointerDownHandler
     public float changeSpeed;
     public TMP_InputField[] variableToChange;
     bool sliding;
+
+    public Properties properties;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("Clicked on slider");
@@ -35,6 +38,7 @@ public class VariableSlider : MonoBehaviour, IPointerDownHandler
             {
                 string newText = (float.Parse(vari.text) + (newMousePos.x - oldMousePosition.x) * changeSpeed).ToString();
                 vari.text = newText;
+                properties.UpdateVariables();
             }
 
             if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))

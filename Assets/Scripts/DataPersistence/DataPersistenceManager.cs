@@ -28,18 +28,25 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        NewGame();
     }
 
     public void NewGame()
     {
         this.gameData = new GameData();
+
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
     }
 
     public void LoadGame(string path)
     {
         // load any saved data from a file using the data handler
         this.gameData = dataHandler.Load(path);
+
+        Destroy(BlackBoard.renderedObject);
+        BlackBoard.SetRenderedObject(null);
 
         // if no data can be loaded, initialize to a new game
         if (this.gameData == null)

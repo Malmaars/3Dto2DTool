@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CameraProperties : MonoBehaviour
+public class CameraProperties : Properties
 {
     public bool movingInScene;
     bool editing;
@@ -46,7 +46,7 @@ public class CameraProperties : MonoBehaviour
         editing = true;
     }
 
-    public void UpdateVariables()
+    public override void UpdateVariables()
     {
         if (Camera.main == null)
             return;
@@ -74,7 +74,7 @@ public class CameraProperties : MonoBehaviour
 
     }
 
-    public void UpdateVisuals()
+    public override void UpdateVisuals()
     {
         if (Camera.main == null || editing)
         {
