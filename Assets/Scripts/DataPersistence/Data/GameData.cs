@@ -21,6 +21,10 @@ public class GameData
     //we need a way to know (and save) which object actually has the animation on it
     public string AnimationObjectName;
 
+    //some values for the lighting
+    public Quaternion lightRotation;
+    public float lightIntensity;
+
     // the values defined in this constructor will be the default values
     // the game starts with when there's no data to load
     public GameData()
@@ -40,6 +44,9 @@ public class GameData
         objectPath = "";
 
         AnimationObjectName = "";
+
+        lightRotation = Quaternion.Euler(new Vector3(50, -30, 0));
+        lightIntensity = 1;
 
     }
 }

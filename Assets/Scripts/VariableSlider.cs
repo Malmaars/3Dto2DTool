@@ -36,7 +36,7 @@ public class VariableSlider : MonoBehaviour, IPointerDownHandler
 
             foreach (TMP_InputField vari in variableToChange)
             {
-                string newText = (float.Parse(vari.text) + (newMousePos.x - oldMousePosition.x) * changeSpeed).ToString();
+                string newText = (float.Parse(vari.text) + (newMousePos.x - oldMousePosition.x) * changeSpeed).ToString("F2");
                 vari.text = newText;
                 properties.UpdateVariables();
             }

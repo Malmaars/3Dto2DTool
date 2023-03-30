@@ -26,6 +26,8 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     public GameObject ExportWindow;
 
+    public GameObject LoadingVisual;
+
     private void Start()
     {
         BlackBoard.SetRenderImage(renderVisual);
@@ -204,9 +206,8 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     IEnumerator ImportTexture(string path)
     {
+        StartLoading();
         yield return new WaitForEndOfFrame();
-
-
 
         //save texture
         if(path.Length != 0)
@@ -228,6 +229,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             BlackBoard.ApplyTexture(Resources.Load("LoadedTexture" + fileType) as Texture2D);
             texturePath = path;
         }
+        StopLoading();
     }
 
     public void ImportAnimVoid()
@@ -259,6 +261,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     IEnumerator ImportAnim(string path)
     {
+        StartLoading();
         yield return new WaitForEndOfFrame();
 
         if (path.Length != 0)
@@ -279,10 +282,12 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             animApplier.SetHierarchyVisuals(BlackBoard.renderedObject, null);
             animPath = path;
         }
+        StopLoading();
     }
 
     IEnumerator LoadAnim(string path, GameObject _applyTo)
     {
+        StartLoading();
         yield return new WaitForEndOfFrame();
 
         if (path.Length != 0)
@@ -305,6 +310,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             animApplier.ApplyAnimation(_applyTo);
             animApplier.ApplyAnim();
         }
+        StopLoading();
     }
 
 
@@ -327,6 +333,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     IEnumerator Import3DObject(string path)
     {
+        StartLoading();
         yield return new WaitForEndOfFrame();
 
         //string path = EditorUtility.OpenFilePanel("load a 3D object", "", "fbx,obj");
@@ -350,65 +357,8 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             objectPath = path;
             //LoadObjectVoid("LoadedObject");
         }
+        StopLoading();
     }
-
-    public void LoadObjectVoid(string fileName)
-    {
-        DirectoryInfo directoryInfo = new DirectoryInfo(Application.streamingAssetsPath);
-        print("Streaming Assets Path: " + Application.streamingAssetsPath);
-        FileInfo[] allFiles = directoryInfo.GetFiles("*.*");
-
-        foreach (FileInfo file in allFiles)
-        {
-            Debug.Log(file.Name + ", " + fileName);
-            if (file.Name.Contains(fileName))
-            {
-                StartCoroutine(Load3DObject(file, fileName));
-            }
-        }
-    }
-    IEnumerator Load3DObject(FileInfo playerFile, string fileName)
-    {
-        //1
-        if (playerFile.Name.Contains("meta"))
-        {
-            yield break;
-        }
-        //2
-        else
-        {
-            string playerFileWithoutExtension = Path.GetFileNameWithoutExtension(playerFile.ToString());
-            string[] playerNameData = playerFileWithoutExtension.Split(" "[0]);
-            //3
-            string tempPlayerName = "";
-            int i = 0;
-            foreach (string stringFromFileName in playerNameData)
-            {
-                if (i != 0)
-                {
-                    tempPlayerName = tempPlayerName + stringFromFileName + " ";
-                }
-                i++;
-            }
-            //4
-            string wwwPlayerFilePath = "file://" + playerFile.FullName.ToString();
-
-            UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle(wwwPlayerFilePath);
-
-
-            //yield return www;
-            yield return www.SendWebRequest();
-
-            AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(www);
-            GameObject temp = bundle.LoadAsset(fileName) as GameObject;
-
-            //5
-            Debug.Log("trying to instantiate");
-            BlackBoard.SetRenderedObject(Instantiate(temp));
-        }
-    }
-
-
 
     public void ExportImageVoid()
     {
@@ -417,6 +367,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     IEnumerator ExportImageToFile()
     {
+        StartLoading();
         yield return new WaitForEndOfFrame();
 
         //BlackBoard.photoCamera.cullingMask
@@ -435,6 +386,8 @@ public class RenderManager : MonoBehaviour, IDataPersistence
         {
             File.WriteAllBytes(path, bytes);
         }
+
+        StopLoading();
     }
 
     public void ExportSpriteSheetVoid()
@@ -444,6 +397,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     IEnumerator ExportSpriteSheetToFile(int desiredFramerate)
     {
+        StartLoading();
         yield return new WaitForEndOfFrame();
 
         foreach (AnimationState state in BlackBoard.anim)
@@ -557,5 +511,17 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             state.time = 0;
             state.speed = 1;
         }
+        StopLoading();
+    }
+
+    public void StartLoading()
+    {
+        BlackBoard.IsLoading(true);
+        LoadingVisual.SetActive(true);
+    }
+    public void StopLoading()
+    {
+        BlackBoard.IsLoading(false);
+        LoadingVisual.SetActive(false);
     }
 }

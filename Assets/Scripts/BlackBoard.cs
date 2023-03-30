@@ -19,6 +19,8 @@ public static class BlackBoard
 
     public static bool movingObject;
 
+    public static bool loading;
+
     public static void ApplyTexture(Texture2D _tex)
     {
         MeshRenderer[] meshes =  renderedObject.GetComponentsInChildren<MeshRenderer>();
@@ -68,5 +70,10 @@ public static class BlackBoard
         photoCamera.aspect = visualRT.texelSize.y / visualRT.texelSize.x;
         photoCamera.targetTexture = visualRT;
         renderImage.texture = visualRT;
+    }
+
+    public static void IsLoading(bool _loadingState)
+    {
+        loading = _loadingState;
     }
 }

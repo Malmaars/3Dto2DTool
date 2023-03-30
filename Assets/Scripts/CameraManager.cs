@@ -30,6 +30,9 @@ public class CameraManager : MonoBehaviour
         basePhotoCamera.transform.position = transform.position;
         basePhotoCamera.transform.rotation = transform.rotation;
 
+        if (BlackBoard.loading)
+            return;
+
         if (Input.GetMouseButton(1))
         {
             //rotate the camera around the object

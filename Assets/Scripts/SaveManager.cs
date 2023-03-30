@@ -38,7 +38,6 @@ public class SaveManager : MonoBehaviour, IDataPersistence
 
         _gameData.cameraPosition = Camera.main.transform.position;
         _gameData.cameraRotation = Camera.main.transform.rotation;
-
     }
 
     public void LoadData(GameData _gameData)

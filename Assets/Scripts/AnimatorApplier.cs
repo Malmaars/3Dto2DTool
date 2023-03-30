@@ -10,6 +10,7 @@ public class AnimatorApplier : MonoBehaviour
     GameObject currentAnimationObject;
 
     public GameObject animCheck, playButton, pauseButton, stopButton;
+    public GameObject selectedInHierarchy;
 
     public Transform contentParent;
     int totalChildCount;
@@ -19,7 +20,7 @@ public class AnimatorApplier : MonoBehaviour
     Animation currentAnim;
 
     string selectedObjectName;
-    public void ApplyAnimation(GameObject _applyTo)
+    public void ApplyAnimation(GameObject _applyTo)   
     {
         if(currentAnimationObject != null && currentAnimationObject != _applyTo)
         {
@@ -51,6 +52,36 @@ public class AnimatorApplier : MonoBehaviour
         currentAnim = motion;
 
         selectedObjectName = _applyTo.name;
+        selectedInHierarchy.SetActive(true);
+
+        //also move it down the hierarchy for visibility
+        selectedInHierarchy.transform.SetParent(null);
+        selectedInHierarchy.transform.SetParent(contentParent);
+
+        selectedInHierarchy.transform.position = FindChildInContent(selectedObjectName, contentParent).position + new Vector3(130, 0, 0);
+    }
+
+    Transform FindChildInContent(string _name, Transform _parent)
+    {
+        Transform found = _parent.Find(selectedObjectName);
+        if(found != null)
+        {
+            return found;
+        }
+
+        if(_parent.childCount > 0)
+        {
+            //check in children
+            for(int i = 0; i < _parent.childCount; i++)
+            {
+                Transform newFound = FindChildInContent(_name ,_parent.GetChild(i));
+
+                if (newFound != null)
+                    return newFound;
+            }
+        }
+
+        return null;
     }
 
     public void SetContentSize()
@@ -146,6 +177,10 @@ public class AnimatorApplier : MonoBehaviour
     {
         for(int i = contentParent.childCount -1; i >= 0; i--)
         {
+            if(contentParent.GetChild(i).GetComponent<LayoutElement>() && contentParent.GetChild(i).GetComponent<LayoutElement>().ignoreLayout)
+            {
+                continue;
+            }
             Debug.Log("Destroying " + contentParent.GetChild(i).name);
             Destroy(contentParent.GetChild(i).gameObject);
         }
@@ -172,6 +207,7 @@ public class AnimatorApplier : MonoBehaviour
 
     public void Close()
     {
+        selectedInHierarchy.SetActive(false);
         transform.gameObject.SetActive(false);
     }
 
