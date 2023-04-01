@@ -61,11 +61,11 @@ public class HoverOverUIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             //set infobox to just under the mouse
             Vector3 newPos = Input.mousePosition - Vector3.up * 20;
-
+            HoverObject.SetText(text);
             //check if it falls out of the screen, if it does, nudge it back in
 
             HoverObject.SetPosition(newPos);
-            HoverObject.SetText(text);
+
 
             //enable info box
             HoverObject.EnableObject();

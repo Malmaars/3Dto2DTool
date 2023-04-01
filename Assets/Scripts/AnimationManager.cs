@@ -16,7 +16,10 @@ public class AnimationManager : MonoBehaviour
 
     public void PauseAnimation()
     {
-        BlackBoard.anim.Stop();
+        foreach (AnimationState state in BlackBoard.anim)
+        {
+            state.speed = 0;
+        }
     }
 
     public void StopAnimation()

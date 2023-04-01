@@ -392,13 +392,20 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
     public void ExportSpriteSheetVoid()
     {
-        StartCoroutine(ExportSpriteSheetToFile(frameRate));
+        string path = StandaloneFileBrowser.SaveFilePanel("Save PNG Image", "", "image.png", "png");
+        StartCoroutine(ExportSpriteSheetToFile(frameRate, path));
     }
 
-    IEnumerator ExportSpriteSheetToFile(int desiredFramerate)
+    IEnumerator ExportSpriteSheetToFile(int desiredFramerate, string path)
     {
         StartLoading();
         yield return new WaitForEndOfFrame();
+
+        if(path.Length == 0)
+        {
+            StopLoading();
+            yield break;
+        }
 
         foreach (AnimationState state in BlackBoard.anim)
         {
@@ -410,7 +417,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
         BlackBoard.anim.Play();
         yield return new WaitForEndOfFrame();
 
-        string path = StandaloneFileBrowser.SaveFilePanel("Save PNG Image", "", "image.png", "png");
         //run the animation, and take a screenshot each frame
 
         //find out the length of the animation first

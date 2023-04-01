@@ -2670,6 +2670,7 @@ GameObject:
   - component: {fileID: 141755187}
   - component: {fileID: 141755186}
   - component: {fileID: 141755185}
+  - component: {fileID: 141755188}
   m_Layer: 5
   m_Name: LoadScene
   m_TagString: Untagged
@@ -2792,6 +2793,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141755183}
   m_CullTransparentMesh: 1
+--- !u!114 &141755188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141755183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Load a local save file (.save) from your computer, to continue working on
+    a saved scene
 --- !u!1 &142240479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,7 +3253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Enable the tool to move the object
+  text: Activate the tool gizmos to move the object
 --- !u!1 &159945479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3751,6 +3766,7 @@ GameObject:
   - component: {fileID: 176368741}
   - component: {fileID: 176368740}
   - component: {fileID: 176368739}
+  - component: {fileID: 176368742}
   m_Layer: 5
   m_Name: FocusButton
   m_TagString: Untagged
@@ -3873,6 +3889,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176368737}
   m_CullTransparentMesh: 1
+--- !u!114 &176368742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176368737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Focus the camera on the pivot point of the object
 --- !u!1 &182045242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,6 +4632,7 @@ GameObject:
   - component: {fileID: 221871197}
   - component: {fileID: 221871196}
   - component: {fileID: 221871199}
+  - component: {fileID: 221871200}
   m_Layer: 5
   m_Name: ExportButton
   m_TagString: Untagged
@@ -4745,6 +4775,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &221871200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221871194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Open the export menu, where you can export your viewport as a transparent
+    image
 --- !u!1 &245050033
 GameObject:
   m_ObjectHideFlags: 0
@@ -6246,6 +6290,7 @@ GameObject:
   - component: {fileID: 327837301}
   - component: {fileID: 327837300}
   - component: {fileID: 327837299}
+  - component: {fileID: 327837302}
   m_Layer: 5
   m_Name: ScaleButton
   m_TagString: Untagged
@@ -6368,6 +6413,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327837297}
   m_CullTransparentMesh: 1
+--- !u!114 &327837302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327837297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Activate the tool gizmos to scale the object
 --- !u!1 &332803137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7065,6 +7123,7 @@ GameObject:
   - component: {fileID: 373355594}
   - component: {fileID: 373355593}
   - component: {fileID: 373355592}
+  - component: {fileID: 373355597}
   m_Layer: 5
   m_Name: OpenHeader
   m_TagString: Untagged
@@ -7232,6 +7291,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &373355597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373355591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the properties of the object in the scene
 --- !u!1 &374652925
 GameObject:
   m_ObjectHideFlags: 0
@@ -11967,6 +12039,7 @@ GameObject:
   - component: {fileID: 637334049}
   - component: {fileID: 637334048}
   - component: {fileID: 637334047}
+  - component: {fileID: 637334050}
   m_Layer: 5
   m_Name: NewScene
   m_TagString: Untagged
@@ -12089,6 +12162,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637334045}
   m_CullTransparentMesh: 1
+--- !u!114 &637334050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637334045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Create a new scene (removes all objects and resets all values)
 --- !u!1 &637661457
 GameObject:
   m_ObjectHideFlags: 0
@@ -18634,6 +18720,7 @@ GameObject:
   - component: {fileID: 1034233815}
   - component: {fileID: 1034233814}
   - component: {fileID: 1034233813}
+  - component: {fileID: 1034233816}
   m_Layer: 5
   m_Name: RotateButton
   m_TagString: Untagged
@@ -18756,6 +18843,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034233811}
   m_CullTransparentMesh: 1
+--- !u!114 &1034233816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034233811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Activate the tool gizmos to rotate the object
 --- !u!1 &1035580098
 GameObject:
   m_ObjectHideFlags: 0
@@ -19343,6 +19443,7 @@ GameObject:
   - component: {fileID: 1059651751}
   - component: {fileID: 1059651750}
   - component: {fileID: 1059651749}
+  - component: {fileID: 1059651752}
   m_Layer: 5
   m_Name: ImportAnimation
   m_TagString: Untagged
@@ -19466,6 +19567,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059651747}
   m_CullTransparentMesh: 1
+--- !u!114 &1059651752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059651747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Import an animation to the object (Doesn't work if there isn't an object
+    present)
 --- !u!1 &1062875453
 GameObject:
   m_ObjectHideFlags: 0
@@ -21268,6 +21383,7 @@ GameObject:
   - component: {fileID: 1175568107}
   - component: {fileID: 1175568106}
   - component: {fileID: 1175568105}
+  - component: {fileID: 1175568109}
   m_Layer: 5
   m_Name: CloseHeader
   m_TagString: Untagged
@@ -21435,6 +21551,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175568103}
   m_CullTransparentMesh: 1
+--- !u!114 &1175568109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175568103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the settings for the exported image
 --- !u!1 &1178505894
 GameObject:
   m_ObjectHideFlags: 0
@@ -21583,6 +21712,7 @@ GameObject:
   - component: {fileID: 1192301640}
   - component: {fileID: 1192301639}
   - component: {fileID: 1192301638}
+  - component: {fileID: 1192301642}
   m_Layer: 5
   m_Name: CloseHeader
   m_TagString: Untagged
@@ -21750,6 +21880,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192301636}
   m_CullTransparentMesh: 1
+--- !u!114 &1192301642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192301636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the position and rotation of the camera (you can also do this by using
+    the right and middle mouse button in the scene)
 --- !u!1 &1223311258
 GameObject:
   m_ObjectHideFlags: 0
@@ -23010,7 +23154,7 @@ MonoBehaviour:
   totalFramesText: {fileID: 1324622769}
   frameRateInputField: {fileID: 1924820508}
   SpriteSheetBlocker: {fileID: 54343289}
-  renManager: {fileID: 0}
+  renManager: {fileID: 499403582}
 --- !u!114 &1292567471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23373,6 +23517,7 @@ GameObject:
   - component: {fileID: 1316786455}
   - component: {fileID: 1316786454}
   - component: {fileID: 1316786453}
+  - component: {fileID: 1316786458}
   m_Layer: 5
   m_Name: OpenHeader
   m_TagString: Untagged
@@ -23540,6 +23685,19 @@ RectTransform:
   m_AnchoredPosition: {x: 133.255, y: 0}
   m_SizeDelta: {x: 266.51, y: 20}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1316786458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316786452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the direction of the directional light in the scene
 --- !u!1 &1324622767
 GameObject:
   m_ObjectHideFlags: 0
@@ -23940,7 +24098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Import a texture directly onto the loaded Object
+  text: Import a texture directly onto the loaded Object. (Doesn't work if there
+    isn't an object present)
 --- !u!1 &1337086344
 GameObject:
   m_ObjectHideFlags: 0
@@ -24715,6 +24874,7 @@ GameObject:
   - component: {fileID: 1395617230}
   - component: {fileID: 1395617229}
   - component: {fileID: 1395617228}
+  - component: {fileID: 1395617231}
   m_Layer: 5
   m_Name: SaveScene
   m_TagString: Untagged
@@ -24837,6 +24997,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395617226}
   m_CullTransparentMesh: 1
+--- !u!114 &1395617231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395617226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Save your scene as a local save file, so you can access it later
 --- !u!1 &1406233916
 GameObject:
   m_ObjectHideFlags: 0
@@ -27680,6 +27853,7 @@ GameObject:
   - component: {fileID: 1568069281}
   - component: {fileID: 1568069280}
   - component: {fileID: 1568069279}
+  - component: {fileID: 1568069282}
   m_Layer: 5
   m_Name: ImportButton
   m_TagString: Untagged
@@ -27802,6 +27976,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568069277}
   m_CullTransparentMesh: 1
+--- !u!114 &1568069282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568069277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Import an .fbx file from your computer to the scene
 --- !u!1 &1568609797
 GameObject:
   m_ObjectHideFlags: 0
@@ -28752,6 +28939,7 @@ GameObject:
   - component: {fileID: 1595821907}
   - component: {fileID: 1595821906}
   - component: {fileID: 1595821905}
+  - component: {fileID: 1595821910}
   m_Layer: 5
   m_Name: OpenHeader
   m_TagString: Untagged
@@ -28919,6 +29107,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1595821910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595821904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the settings for the exported image
 --- !u!1 &1601857368
 GameObject:
   m_ObjectHideFlags: 0
@@ -33394,6 +33595,7 @@ GameObject:
   - component: {fileID: 1796635985}
   - component: {fileID: 1796635984}
   - component: {fileID: 1796635983}
+  - component: {fileID: 1796635987}
   m_Layer: 5
   m_Name: CloseHeader
   m_TagString: Untagged
@@ -33561,6 +33763,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796635981}
   m_CullTransparentMesh: 1
+--- !u!114 &1796635987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796635981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the direction of the directional light in the scene
 --- !u!1 &1799051473
 GameObject:
   m_ObjectHideFlags: 0
@@ -35101,6 +35316,7 @@ GameObject:
   - component: {fileID: 1889225609}
   - component: {fileID: 1889225608}
   - component: {fileID: 1889225607}
+  - component: {fileID: 1889225611}
   m_Layer: 5
   m_Name: CloseHeader
   m_TagString: Untagged
@@ -35268,6 +35484,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889225605}
   m_CullTransparentMesh: 1
+--- !u!114 &1889225611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889225605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the properties of the object in the scene
 --- !u!1 &1902874911
 GameObject:
   m_ObjectHideFlags: 0
@@ -35680,6 +35909,7 @@ GameObject:
   - component: {fileID: 1921493119}
   - component: {fileID: 1921493118}
   - component: {fileID: 1921493117}
+  - component: {fileID: 1921493120}
   m_Layer: 5
   m_Name: NoneButton
   m_TagString: Untagged
@@ -35802,6 +36032,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921493115}
   m_CullTransparentMesh: 1
+--- !u!114 &1921493120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921493115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Disable the active tool gizmos
 --- !u!1 &1924820506
 GameObject:
   m_ObjectHideFlags: 0
@@ -35966,7 +36209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -37000,7 +37243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -39098,6 +39341,7 @@ GameObject:
   - component: {fileID: 2111592305}
   - component: {fileID: 2111592304}
   - component: {fileID: 2111592303}
+  - component: {fileID: 2111592308}
   m_Layer: 5
   m_Name: OpenHeader
   m_TagString: Untagged
@@ -39265,6 +39509,20 @@ RectTransform:
   m_AnchoredPosition: {x: 133.255, y: 0}
   m_SizeDelta: {x: 266.51, y: 20}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &2111592308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111592302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9147026e73b1448942087e96200b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Edit the position and rotation of the camera (you can also do this by using
+    the right and middle mouse button in the scene)
 --- !u!1 &2122895561
 GameObject:
   m_ObjectHideFlags: 0

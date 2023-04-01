@@ -58,7 +58,9 @@ public class AnimatorApplier : MonoBehaviour
         selectedInHierarchy.transform.SetParent(null);
         selectedInHierarchy.transform.SetParent(contentParent);
 
-        selectedInHierarchy.transform.position = FindChildInContent(selectedObjectName, contentParent).position + new Vector3(130, 0, 0);
+
+        if (FindChildInContent(selectedObjectName, contentParent))
+            selectedInHierarchy.transform.position = FindChildInContent(selectedObjectName, contentParent).position + new Vector3(130, 0, 0);
     }
 
     Transform FindChildInContent(string _name, Transform _parent)
