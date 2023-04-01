@@ -247,7 +247,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
         string[] paths = StandaloneFileBrowser.OpenFilePanel("Import an animation", "", "anim", false);
 
-        //I hate to make nestled if statements, but I can't return a coroutine, so it'll have to do
         if (paths.Length != 0)
         {
             StartCoroutine(ImportAnim(paths[0]));
@@ -276,7 +275,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
 
             while (Resources.Load(fileName) == null) { yield return null; }
 
-            Debug.Log(Resources.Load(fileName).GetType());
             BlackBoard.SetAnimationClip(Resources.Load(fileName) as AnimationClip);
             animApplier.SetClip(BlackBoard.animClip);
             animApplier.SetHierarchyVisuals(BlackBoard.renderedObject, null);
@@ -323,7 +321,7 @@ public class RenderManager : MonoBehaviour, IDataPersistence
     public void ImportObjectVoid()
     {
         var extensions = new[] {
-        new ExtensionFilter("3D Files", "fbx", "obj")
+        new ExtensionFilter("3D Files", "fbx")
             };
 
         string path = StandaloneFileBrowser.OpenFilePanel("load a 3D object", "", extensions, false)[0];
@@ -336,26 +334,24 @@ public class RenderManager : MonoBehaviour, IDataPersistence
         StartLoading();
         yield return new WaitForEndOfFrame();
 
-        //string path = EditorUtility.OpenFilePanel("load a 3D object", "", "fbx,obj");
-
         if (path.Length != 0)
         {
             byte[] fileContent = File.ReadAllBytes(path);
 
-            //check what filetype it is, and rewrite it as that filetype
-
+            //check what filetype it is
             string fileType = GetFileTypeFromPath(path);
 
+            //copy the data from the fbx file to the resources folder
             File.WriteAllBytes(Application.dataPath + "/Resources/LoadedObject"+ fileType+ "." + fileType, fileContent);
 
             AssetDatabase.Refresh();
 
             while (Resources.Load("LoadedObject" + fileType) == null) { yield return null; }
 
+            //load the object from the resources folder using Resources.Load
             BlackBoard.SetRenderedObject(Instantiate(Resources.Load("LoadedObject" + fileType)) as GameObject);
 
             objectPath = path;
-            //LoadObjectVoid("LoadedObject");
         }
         StopLoading();
     }
@@ -369,8 +365,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
     {
         StartLoading();
         yield return new WaitForEndOfFrame();
-
-        //BlackBoard.photoCamera.cullingMask
 
         RenderTexture.active = BlackBoard.visualRT;
         Texture2D screenShot = new Texture2D(BlackBoard.visualRT.width, BlackBoard.visualRT.height, TextureFormat.ARGB32, false);
