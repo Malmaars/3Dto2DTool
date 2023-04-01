@@ -16,7 +16,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
     public Transform renderVisualParent;
 
     public Camera photoCam;
-    public Camera UICam;
 
     public AnimatorApplier animApplier;
 
@@ -309,13 +308,6 @@ public class RenderManager : MonoBehaviour, IDataPersistence
             animApplier.ApplyAnim();
         }
         StopLoading();
-    }
-
-
-    IEnumerator FindAnimationInFbx()
-    {
-        //I'd like to check if there's already an animation in the imported fbx, as that is a possibility
-        yield return new WaitForEndOfFrame();
     }
 
     public void ImportObjectVoid()

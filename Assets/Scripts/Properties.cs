@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Properties : MonoBehaviour
 {
-    public virtual void UpdateVariables()
-    {
+    public virtual void UpdateVariables(){}
 
-    }
-
-    public virtual void UpdateVisuals()
-    {
-
-    }
+    public virtual void UpdateVisuals(){}
 }

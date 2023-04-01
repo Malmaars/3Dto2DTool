@@ -15,7 +15,6 @@ public class CameraManager : MonoBehaviour
 
     public GameObject cameraUIPrefab;
     public Transform photoCameraUIParent;
-    int cameraNumber = 1;
 
     public CameraProperties camProp;
     // Start is called before the first frame update
